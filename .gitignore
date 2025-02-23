@@ -5,6 +5,29 @@
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
+*.onnx
+*.pt
+*.pth
+*.h7
+*.out
+trainable_params.txt
+logs
+wandb
+weights
+temp
+checkpoints
+data
+runs
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+
 *.dat
 *.pth
 *.npy
