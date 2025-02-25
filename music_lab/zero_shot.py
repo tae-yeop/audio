@@ -1,26 +1,17 @@
 import torch
 import argparse
 import os
-
+from transformers import AutoFeatrueExtractor, HubertModel, Wav2Vec2Model, ClapModel
 from torch.utils.data import Dataset, DataLoader
 
 
-def get_model():
-    """
-    Retrieves and initializes a specified audio processing model.
-
-    Parameters:
-    None
-
-    Returns:
-    model: torch.nn.Module
-        The initialized model ready for use on the specified device.
-    """
-def get_model():
+def get_model(model_name):
     if model_name == "hubert":
         backbone = HubertModel.from_pretrained("facebook/hubert-base-ls960")
     elif model_name == "wav2vec2":
         backbone = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
+    elif model_name == "clap":
+        backbone = ClapModel.from_pretrained("facebook/clap-base")
     else:
         raise ValueError("지원되지 않는 backbone 모델입니다.")
 
