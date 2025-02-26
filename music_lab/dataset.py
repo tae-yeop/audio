@@ -176,15 +176,15 @@ class Covers80Dataset(Dataset):
 
         # 다운로드 옵션 처리
         if download and not os.path.isdir(root_dir):
-            os.makedirs("data", exist_ok=True)
+            os.makedirs(root_dir, exist_ok=True)
             url = "http://labrosa.ee.columbia.edu/projects/coversongs/covers80/covers80.tgz"
             print(f"Downloading Covers80 from {url} ...")
             r = requests.get(url, stream=True)
-            tar_path = os.path.join("data", "covers80.tgz")
+            tar_path = os.path.join(root_dir, "covers80.tgz")
             open(tar_path, 'wb').write(r.content)
             import tarfile
             tar = tarfile.open(tar_path)
-            tar.extractall(path="data")
+            tar.extractall(path=root_dir)
             tar.close()
             
         if not os.path.isdir(root_dir):
@@ -217,20 +217,31 @@ class Covers80Dataset(Dataset):
         return waveform, label
     
 
-import h5py
+# import h5py
 
-class DaTacosDataset(Dataset):
-    def __init__(self, 
-                 root_dir="data", 
-                 subset="benchmark", 
-                 feature_type="hpcp", 
-                 download=False, 
-                 transform=None):
+# class DaTacosDataset(Dataset):
+#     def __init__(self, 
+#                  root_dir="data", 
+#                  subset="benchmark", 
+#                  feature_type="hpcp", 
+#                  download=False, 
+#                  transform=None):
         
-        self.root_dir = root_dir
-        self.subset = subset  # 'benchmark' or 'coveranalysis'
-        self.feature_type = feature_type  # e.g., 'hpcp', 'mfcc', 'cens', etc.
-        self.transform = transform
-        self.files = []    # list of feature file paths
-        self.labels = []   # list of work IDs (cover group labels)
-        self.label_to_idx = {}  # map WID -> index
+#         self.root_dir = root_dir
+#         self.subset = subset  # 'benchmark' or 'coveranalysis'
+#         self.feature_type = feature_type  # e.g., 'hpcp', 'mfcc', 'cens', etc.
+#         self.transform = transform
+#         self.files = []    # list of feature file paths
+#         self.labels = []   # list of work IDs (cover group labels)
+#         self.label_to_idx = {}  # map WID -> index
+
+from torchvision import transforms
+
+if __name__ == "__main__":
+    root_dir = '/purestorage/AILAB/AI_1/tyk/3_CUProjects/audio/music_lab/data/covers80'
+    # dataset = FMADataset(root_dir, download=True,)
+    dataset = Covers80Dataset(root_dir, download=True)
+
+    print(f"Number of samples: {len(dataset)}")
+    item = dataset[3]
+    print(item)

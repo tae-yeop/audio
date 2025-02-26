@@ -11,7 +11,9 @@ def get_model(model_name):
     elif model_name == "wav2vec2":
         backbone = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base")
     elif model_name == "clap":
-        backbone = ClapModel.from_pretrained("facebook/clap-base")
+        # backbone = ClapAudioModel.from_pretrained("laion/clap-htsat-fused")
+        # processor = AutoProcessor.from_pretrained("laion/clap-htsat-fused")
+        # https://huggingface.co/lukewys/laion_clap/resolve/main/music_audioset_epoch_15_esc_90.14.pt
     else:
         raise ValueError("지원되지 않는 backbone 모델입니다.")
 
