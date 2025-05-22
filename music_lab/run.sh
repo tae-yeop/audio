@@ -14,5 +14,7 @@ srun --container-image /purestorage/AILAB/AI_1/tyk/0_Software/audio.sqsh \
     --container-writable \
     --container-workdir /purestorage/AILAB/AI_1/tyk/3_CUProjects/audio/music_lab \
     bash -c "
-    python dataset.py $@
+    python zero_shot.py $@
     "
+
+# python dataset.py

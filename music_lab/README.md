@@ -22,7 +22,7 @@
 - 생성 모델
     - [MusicGen](https://github.com/facebookresearch/audiocraft/blob/main/docs/MUSICGEN.md)
         - transformers MusicgenForConditionalGeneration으로 제공해줌
-        - 파인ㅌ닝하는 코드도 있음
+        - 파인튜닝하는 코드도 있음
 
     - [MusicLDM]
         - diffusers에서 지원해줌
